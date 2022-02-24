@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://wwcdn.weixin.qq.com/node/wework/wwopen/js/wwLogin-1.2.4.js"></script>
+    <style>
+        	body {
+				background-color: #000000;
+				margin: 0;
+				font-family: Helvetica, sans-serif;;
+				overflow: hidden;
+			}
+            .show_info{background-color:rgba(0,0,0,.6);padding:10px;width:300px;margin:0 auto;left: 0;right:0;border-radius: 5px;box-shadow: 0 0 10px 0 #fff;top:30%;display: inline-block;}
+			.show_info .info_my{text-align: center;}
+			.show_info .info_my > *{display:inline-block !important;vertical-align: middle;}
+
+    </style>
+    <link rel="stylesheet" href="/css/animate.css">
+</head>
+<body>
+<script src="/js/jquery.min.js"></script>
+
+
+
+<div class="show_info animated" id="show_info1" style="display:none;" >
+    <div class="info_my" id="qrcode1"></div>
+</div>
+
+<div class="show_info animated" id="show_info1_1" style="text-align:center;display:none;">
+    <h1 id="errmsg1" style="display:none;" th:text=${errmsg}></h1>
+    <h1 style="color:white;" th:text = ${content}></h1>
+    <img  th:src = ${url} width="220px" height="220px"/>
+</div>
+
+
+<script>
+        var _in = ['bounceIn','bounceInDown','bounceInLeft','bounceInRight','bounceInUp','fadeIn','fadeInDown','fadeInDownBig','fadeInLeft','fadeInLeftBig','fadeInRight','fadeInRightBig','fadeInUp','fadeInUpBig','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight','slideInDown','slideInLeft','slideInRight'];
+        var _out = ['bounceOut','bounceOutDown','bounceOutLeft','bounceOutRight','bounceOutUp','fadeOut','fadeOutDown','fadeOutDownBig','fadeOutLeft','fadeOutLeftBig','fadeOutRight','fadeOutRightBig','fadeOutUp','fadeOutUpBig','rotateOut','rotateOutDownLeft','rotateOutDownRight','rotateOutUpLeft','rotateOutUpRight','slideOutDown','slideOutLeft','slideOutRight'];
+
+        var num = 0;
+        var wwLogin1 = new WwLogin({
+                "id": "qrcode1",
+                "appid": "ww5f3c78aa1ea4bbdc",
+                "agentid": "1000030",
+                "redirect_uri": "http://tgggcq5.nat.ipyingshe.com/show",
+                "state": "",
+                "href": "",
+                "lang": "zh",
+            });
+
+        var rand_in1 = parseInt(Math.random() * _in.length,10);
+        var rand_out1 = parseInt(Math.random() * _out.length,10);
+
+        var s1 = setInterval(function(){
+            $('#show_info1').show();
+            $('#show_info1').addClass(_in[rand_in1]);
+            if( $("#errmsg1").html() == "ok"){
+                num += 1;
+                $('#show_info1').removeClass(_in[rand_in1]);
+                $('#show_info1').addClass(_out[rand_out1]);
+                $('#show_info1').removeClass(_out[rand_out1]);
+                $('#show_info1').hide();
+                setTimeout(function(){
+                    $('#show_info1_1').show();
+                    $('#show_info1_1').addClass(_in[rand_in1]);
+                    setTimeout(function(){
+                        $('#show_info1_1').removeClass(_in[rand_in1]);
+                        // 更改展示的图片
+                        $('#show_info1_1').addClass(_out[rand_out1]);
+                        $('#show_info1_1').removeClass(_out[rand_out1]);
+                        $('#show_info1_1').hide();
+                    },4500);
+                    wwLogin1 = new WwLogin({
+                        "id": "qrcode1",
+                        "appid": "ww5f3c78aa1ea4bbdc",
+                        "agentid": "1000030",
+                        "redirect_uri": "http://cd2jq60l.dnat.tech/show",
+                        "state": "",
+                        "href": "",
+                        "lang": "zh",
+                    });
+                },0);
+                setTimeout(function(){
+                    rand_in1 = parseInt(Math.random() * _in.length,10);
+                    rand_out1 = parseInt(Math.random() * _out.length,10);
+                    $('#show_info1').show();
+                    $('#show_info1').addClass(_in[rand_in1]);
+                    $("#errmsg1").html("a");
+                },4500);
+            }
+        },1000);
+
+        function refresh(){
+            window.location.reload();
+        }
+        setTimeout(refresh, 100000);
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>签到系统</title>
+    <style>
+        body {
+            background-color: #000000;
+            margin: 0;
+            font-family: Helvetica, sans-serif;;
+            overflow: hidden;
+        }
+        iframe {
+            height: 400px;
+            width: 360px;
+            border: none;
+        }
+
+        span {
+            padding-left: 40px;
+            float: left;
+        }
+
+        img {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            vertical-align: middle;
+        }
+
+        li {
+            font-size: 30px;
+            font-weight: bold;
+            height: 40px;
+        }
+
+        ol {
+            padding-left: 80px;
+        }
+
+        div {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<span>
+        <div>
+            <iframe id="frame1" src="http://cd2jq60l.dnat.tech/login" scrolling="no"></iframe>
+        </div>
+        <div>
+            <iframe id="frame2" src="http://cd2jq60l.dnat.tech/login" scrolling="no"></iframe>
+        </div>
+        <div>
+            <iframe id="frame3" src="http://cd2jq60l.dnat.tech/login" scrolling="no"></iframe>
+        </div>
+        <div>
+            <iframe id="frame4" src="http://cd2jq60l.dnat.tech/login" scrolling="no"></iframe>
+        </div>
+        <div>
+            <iframe id="frame5" src="http://cd2jq60l.dnat.tech/login" scrolling="no"></iframe>
+        </div>
+       <div>
+            <iframe id="frame6" src="http://cd2jq60l.dnat.tech/login" scrolling="no"></iframe>
+        </div>
+       <div>
+            <iframe id="frame7" src="http://cd2jq60l.dnat.tech/login" scrolling="no"></iframe>
+        </div>
+       <div>
+            <iframe id="frame8" src="http://cd2jq60l.dnat.tech/login" scrolling="no"></iframe>
+        </div>
+    </span>
+<script>
+    var pre_nums = new Array(0,0,0,0,0,0,0,0);
+    var nums = new Array(0,0,0,0,0,0,0,0);
+    var sum = 0;
+    var a = setInterval(function(){
+        var x = "frame".concat(String(i+1));
+        for(var i = 0;i<8;i++){
+            if(document.getElementById(x).contentWindow.num != pre_nums[i]){
+                if(document.getElementById(x).contentWindow.num != 0){
+                    nums[i] += 1;
+                }
+                pre_nums[i] = document.getElementById(x).contentWindow.num;
+            }
+        }
+
+        for(var i = 0;i<8;i++){
+            sum += nums[i];
+        }
+        if(sum >= 10){
+            window.location.href = 'http://cd2jq60l.dnat.tech/start';
+        }
+    },100);
+
+
+
+</script>
+
+
+</body>
+</html>
